@@ -20,11 +20,11 @@ public:
     mod_levelitem_Conf() : WorldScript("mod_levelitem_Conf") { }
 
     // Load Configuration Settings
-    void SetInitialWorldSettings()
+    void OnBeforeConfigLoad(bool /*reload*/) override
     {
-        LevelItemEnable = sConfigMgr->GetBoolDefault("LevelItem.Enable", true);
-        LevelItemAnnounce = sConfigMgr->GetBoolDefault("LevelItem.Announce", true);
-        MaxItemLevel = sConfigMgr->GetIntDefault("LevelItem.MaxItemLevel", 80);
+        LevelItemEnable = sConfigMgr->GetOption<bool>("LevelItem.Enable", true);
+        LevelItemAnnounce = sConfigMgr->GetOption<bool>("LevelItem.Announce", true);
+        MaxItemLevel = sConfigMgr->GetOption<int>("LevelItem.MaxItemLevel", 80);
     }
 };
 
@@ -37,7 +37,7 @@ public:
 
     void OnLogin(Player* player) override
     {
-        if (sConfigMgr->GetBoolDefault("Arena1v1Announcer.Enable", true))
+        if (LevelItemAnnounce)
         {
             ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00Level Item |rmodule.");
         }
