@@ -8,7 +8,7 @@
 #include "GossipDef.h"
 
 uint32 Increase_Level;
-uint32 MaxItemLevel = 80;
+uint32 MaxItemLevel = 70;
 bool LevelItemEnable = true;
 bool LevelItemAnnounce = true;
 
